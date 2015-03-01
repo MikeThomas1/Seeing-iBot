@@ -11,6 +11,7 @@ import SpriteKit
 
 class ViewController: UIViewController, UIWebViewDelegate {
     @IBOutlet var videoStreamView: UIWebView!
+    @IBOutlet var refreshStream: UIButton!
     var ipAddress: String!
     
     override func viewDidLoad() {
@@ -104,6 +105,7 @@ class ViewController: UIViewController, UIWebViewDelegate {
     
     func webViewDidFinishLoad(webView: UIWebView) {
         // TODO: hide loading spinner
+        self.refreshStream.enabled = true
         
         let defaults = NSUserDefaults.standardUserDefaults()
         defaults.setObject(self.ipAddress, forKey: "ipAddress")
@@ -111,6 +113,20 @@ class ViewController: UIViewController, UIWebViewDelegate {
     
     func webViewDidStartLoad(webView: UIWebView) {
         // TODO: start loading spinner
+        self.refreshStream.enabled = false
     }
+    @IBAction func refreshButtonPressed(sender: AnyObject) {
+        // TODO: move logic into function 
+        // TODO: show loading spinner
+        let defaults = NSUserDefaults.standardUserDefaults()
+        if let address = defaults.stringForKey("ipAddress")
+        {
+            self.ipAddress = address
+            self.loadStream(address)
+        } else {
+            self.showAlert()
+        }
+    }
+
 }
 

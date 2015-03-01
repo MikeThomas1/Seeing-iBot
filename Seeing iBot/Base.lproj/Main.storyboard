@@ -23,11 +23,32 @@
                                     <rect key="frame" x="-8" y="-8" width="559" height="422"/>
                                 </variation>
                             </webView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XbI-ct-oxY">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" title="Refresh Stream"/>
+                                <variation key="heightClass=compact-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="559" y="364" width="161" height="30"/>
+                                </variation>
+                                <connections>
+                                    <action selector="refreshButtonPressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="wtq-IE-57I"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="XbI-ct-oxY"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=compact-widthClass=regular">
+                            <mask key="subviews">
+                                <include reference="XbI-ct-oxY"/>
+                            </mask>
+                        </variation>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
+                        <outlet property="refreshStream" destination="XbI-ct-oxY" id="krP-Jq-wef"/>
                         <outlet property="videoStreamView" destination="0lv-ry-R7G" id="sLo-SQ-6vR"/>
                     </connections>
                 </viewController>
