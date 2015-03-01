@@ -8,8 +8,14 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UIWebViewDelegate {
     @IBOutlet var videoStreamView: UIWebView!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        self.videoStreamView.delegate = self
+    }
     
     override func viewDidAppear(animated: Bool)
     {
@@ -23,12 +29,12 @@ class ViewController: UIViewController {
         let alertController = UIAlertController(title: "IP", message: "Please enter the IP address of the Raspberry Pi \n i.e. 192.168.2.69", preferredStyle: .Alert)
         
         alertController.addTextFieldWithConfigurationHandler { (textField) in
+            textField.keyboardType = UIKeyboardType.NumbersAndPunctuation
             textField.placeholder = "IP Address"
         }
         
         let ipAction = UIAlertAction(title: "Set IP", style: .Default) { (_) in
             let ipTextField = alertController.textFields![0] as UITextField
-            // TODO: validate entered ip address
             self.loadStream(ipTextField.text)
         }
         
@@ -48,6 +54,24 @@ class ViewController: UIViewController {
         
         self.videoStreamView.loadRequest(streamRequest)
         
+    }
+    
+    func webView(webView: UIWebView, didFailLoadWithError error: NSError) {
+        let alertController = UIAlertController(title: "Error Loading", message: "Encountered an error: \(error.localizedDescription) \n Make sure that the Raspberry Pi is turned on and you've entered the correct IP address. i.e. 192.168.2.69", preferredStyle: .Alert)
+        
+        alertController.addTextFieldWithConfigurationHandler { (textField) in
+            textField.keyboardType = UIKeyboardType.NumbersAndPunctuation
+            textField.placeholder = "IP Address"
+        }
+        
+        let ipAction = UIAlertAction(title: "Set IP", style: .Default) { (_) in
+            let ipTextField = alertController.textFields![0] as UITextField
+            self.loadStream(ipTextField.text)
+        }
+        
+        alertController.addAction(ipAction)
+        
+        self.presentViewController(alertController, animated: true, completion: nil)
     }
 }
 
