@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		032FD8B01AA30B1F00226CBD /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032FD8AF1AA30B1F00226CBD /* GameScene.swift */; };
+		0369955E1AA3031B000A7771 /* Joystick.m in Sources */ = {isa = PBXBuildFile; fileRef = 036995591AA3031B000A7771 /* Joystick.m */; };
+		036995631AA30410000A7771 /* SceneKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 036995621AA30410000A7771 /* SceneKit.framework */; };
 		03C0808E1AA2E72D0015C5F0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C0808D1AA2E72D0015C5F0 /* AppDelegate.swift */; };
 		03C080901AA2E72D0015C5F0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C0808F1AA2E72D0015C5F0 /* ViewController.swift */; };
 		03C080931AA2E72D0015C5F0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03C080911AA2E72D0015C5F0 /* Main.storyboard */; };
@@ -26,6 +29,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		032FD8AF1AA30B1F00226CBD /* GameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
+		036995561AA3031A000A7771 /* Seeing iBot-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Seeing iBot-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
+		036995581AA3031B000A7771 /* Joystick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Joystick.h; path = Joystick/Joystick.h; sourceTree = "<group>"; };
+		036995591AA3031B000A7771 /* Joystick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Joystick.m; path = Joystick/Joystick.m; sourceTree = "<group>"; };
+		036995621AA30410000A7771 /* SceneKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SceneKit.framework; path = System/Library/Frameworks/SceneKit.framework; sourceTree = SDKROOT; };
 		03C080881AA2E72D0015C5F0 /* Seeing iBot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Seeing iBot.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		03C0808C1AA2E72D0015C5F0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		03C0808D1AA2E72D0015C5F0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -43,6 +51,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				036995631AA30410000A7771 /* SceneKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,9 +65,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		036995551AA302D9000A7771 /* Joystick */ = {
+			isa = PBXGroup;
+			children = (
+				036995581AA3031B000A7771 /* Joystick.h */,
+				036995591AA3031B000A7771 /* Joystick.m */,
+			);
+			name = Joystick;
+			sourceTree = "<group>";
+		};
 		03C0807F1AA2E72C0015C5F0 = {
 			isa = PBXGroup;
 			children = (
+				036995621AA30410000A7771 /* SceneKit.framework */,
+				036995551AA302D9000A7771 /* Joystick */,
 				03C0808A1AA2E72D0015C5F0 /* Seeing iBot */,
 				03C080A01AA2E72D0015C5F0 /* Seeing iBotTests */,
 				03C080891AA2E72D0015C5F0 /* Products */,
@@ -77,7 +97,9 @@
 		03C0808A1AA2E72D0015C5F0 /* Seeing iBot */ = {
 			isa = PBXGroup;
 			children = (
+				036995561AA3031A000A7771 /* Seeing iBot-Bridging-Header.h */,
 				03C0808D1AA2E72D0015C5F0 /* AppDelegate.swift */,
+				032FD8AF1AA30B1F00226CBD /* GameScene.swift */,
 				03C0808F1AA2E72D0015C5F0 /* ViewController.swift */,
 				03C080911AA2E72D0015C5F0 /* Main.storyboard */,
 				03C080941AA2E72D0015C5F0 /* Images.xcassets */,
@@ -213,6 +235,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				03C080901AA2E72D0015C5F0 /* ViewController.swift in Sources */,
+				0369955E1AA3031B000A7771 /* Joystick.m in Sources */,
+				032FD8B01AA30B1F00226CBD /* GameScene.swift in Sources */,
 				03C0808E1AA2E72D0015C5F0 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -336,9 +360,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = "Seeing iBot/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Seeing iBot-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -346,9 +373,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = "Seeing iBot/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Seeing iBot-Bridging-Header.h";
 			};
 			name = Release;
 		};
