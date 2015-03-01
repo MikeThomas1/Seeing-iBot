@@ -9,17 +9,45 @@
 import UIKit
 
 class ViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+    @IBOutlet var videoStreamView: UIWebView!
+    
+    override func viewDidAppear(animated: Bool)
+    {
+        super.viewDidAppear(true)
+        
+        self.showAlert()
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    func showAlert()
+    {
+        let alertController = UIAlertController(title: "IP", message: "Please enter the IP address of the Raspberry Pi \n i.e. 192.168.2.69", preferredStyle: .Alert)
+        
+        alertController.addTextFieldWithConfigurationHandler { (textField) in
+            textField.placeholder = "IP Address"
+        }
+        
+        let ipAction = UIAlertAction(title: "Set IP", style: .Default) { (_) in
+            let ipTextField = alertController.textFields![0] as UITextField
+            // TODO: validate entered ip address
+            self.loadStream(ipTextField.text)
+        }
+        
+        alertController.addAction(ipAction)
+        
+        self.presentViewController(alertController, animated: true, completion: nil)
     }
-
-
+    
+    func loadStream(ipAddress: String)
+    {
+        var urlString = "http://"
+        urlString += ipAddress
+        urlString += ":8080/?action=stream"
+        
+        var url = NSURL(string: urlString)
+        var streamRequest = NSURLRequest(URL: url!)
+        
+        self.videoStreamView.loadRequest(streamRequest)
+        
+    }
 }
 

@@ -405,6 +405,7 @@
 				03C080A91AA2E72D0015C5F0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		03C080AA1AA2E72D0015C5F0 /* Build configuration list for PBXNativeTarget "Seeing iBotTests" */ = {
 			isa = XCConfigurationList;
@@ -413,6 +414,7 @@
 				03C080AC1AA2E72D0015C5F0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
