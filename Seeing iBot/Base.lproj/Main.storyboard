@@ -26,7 +26,7 @@
                                     <rect key="frame" x="-8" y="-8" width="559" height="422"/>
                                 </variation>
                             </webView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="bnp-EL-zRL">
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="bnp-EL-zRL">
                                 <rect key="frame" x="400" y="0.0" width="200" height="600"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="czi-hb-9Qv" customClass="SKView">
@@ -36,9 +36,16 @@
                                             <constraint firstAttribute="width" secondItem="czi-hb-9Qv" secondAttribute="height" multiplier="1:1" id="c4L-Qf-22O"/>
                                         </constraints>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XbI-ct-oxY">
-                                        <rect key="frame" x="0.0" y="570" width="200" height="30"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gth-TI-Zsw">
+                                        <rect key="frame" x="0.0" y="200" width="200" height="375"/>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XbI-ct-oxY">
+                                        <rect key="frame" x="0.0" y="575" width="200" height="25"/>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="25" id="cmY-MH-CPE"/>
+                                        </constraints>
                                         <state key="normal" title="Refresh Stream">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
