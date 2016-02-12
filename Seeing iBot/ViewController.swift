@@ -32,6 +32,7 @@ class ViewController: UIViewController, UIWebViewDelegate {
         joyStickView.ignoresSiblingOrder = true
 
         scene.scaleMode = .Fill
+        scene.backgroundColor = UIColor.blackColor()
         
         joyStickView.presentScene(scene)
     }
