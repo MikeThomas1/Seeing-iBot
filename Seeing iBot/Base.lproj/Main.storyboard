@@ -3,6 +3,8 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -14,41 +16,63 @@
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS" customClass="SKView">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <webView userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0lv-ry-R7G">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="551"/>
+                            <webView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0lv-ry-R7G">
+                                <rect key="frame" x="0.0" y="0.0" width="400" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <variation key="heightClass=compact-widthClass=regular" fixedFrame="YES">
                                     <rect key="frame" x="-8" y="-8" width="559" height="422"/>
                                 </variation>
                             </webView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XbI-ct-oxY">
-                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                <state key="normal" title="Refresh Stream"/>
-                                <variation key="heightClass=compact-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="559" y="364" width="161" height="30"/>
-                                </variation>
-                                <connections>
-                                    <action selector="refreshButtonPressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="wtq-IE-57I"/>
-                                </connections>
-                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="bnp-EL-zRL">
+                                <rect key="frame" x="400" y="0.0" width="200" height="600"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="czi-hb-9Qv" customClass="SKView">
+                                        <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="czi-hb-9Qv" secondAttribute="height" multiplier="1:1" id="c4L-Qf-22O"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gth-TI-Zsw">
+                                        <rect key="frame" x="0.0" y="200" width="200" height="375"/>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XbI-ct-oxY">
+                                        <rect key="frame" x="0.0" y="575" width="200" height="25"/>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="25" id="cmY-MH-CPE"/>
+                                        </constraints>
+                                        <state key="normal" title="Refresh Stream">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <variation key="heightClass=compact-widthClass=regular" fixedFrame="YES">
+                                            <rect key="frame" x="559" y="364" width="161" height="30"/>
+                                        </variation>
+                                        <connections>
+                                            <action selector="refreshButtonPressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="wtq-IE-57I"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                        <variation key="default">
-                            <mask key="subviews">
-                                <exclude reference="XbI-ct-oxY"/>
-                            </mask>
-                        </variation>
-                        <variation key="heightClass=compact-widthClass=regular">
-                            <mask key="subviews">
-                                <include reference="XbI-ct-oxY"/>
-                            </mask>
-                        </variation>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="bnp-EL-zRL" secondAttribute="trailing" id="EI2-zj-RYi"/>
+                            <constraint firstAttribute="bottom" secondItem="bnp-EL-zRL" secondAttribute="bottom" id="KOL-Cg-fHK"/>
+                            <constraint firstItem="0lv-ry-R7G" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="N6b-SV-2Rl"/>
+                            <constraint firstItem="bnp-EL-zRL" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="U9k-9n-x4P"/>
+                            <constraint firstItem="0lv-ry-R7G" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="fXB-Ks-btj"/>
+                            <constraint firstItem="bnp-EL-zRL" firstAttribute="leading" secondItem="0lv-ry-R7G" secondAttribute="trailing" id="g09-6a-qUB"/>
+                            <constraint firstAttribute="trailing" secondItem="0lv-ry-R7G" secondAttribute="trailing" multiplier="1.5" id="rxS-bI-84Z"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="0lv-ry-R7G" secondAttribute="bottom" id="rzY-de-QPf"/>
+                        </constraints>
                     </view>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
+                        <outlet property="joyStickView" destination="czi-hb-9Qv" id="YYe-1t-2Ds"/>
                         <outlet property="refreshStream" destination="XbI-ct-oxY" id="krP-Jq-wef"/>
                         <outlet property="videoStreamView" destination="0lv-ry-R7G" id="sLo-SQ-6vR"/>
                     </connections>

@@ -28,7 +28,7 @@ class GameScene: SKScene {
         let jsBackdrop = SKSpriteNode(imageNamed: "dpad")
         
         joystick = Joystick(thumb: jsthumb, andBackdrop: jsBackdrop)
-        joystick.position = CGPointMake(jsBackdrop.size.width * 5, self.size.height/1.5)
+        joystick.position = CGPointMake(size.width/2, size.height/2)
         joystick.name = "playerJoystick"
         
         return joystick
