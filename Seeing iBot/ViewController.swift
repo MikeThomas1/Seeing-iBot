@@ -10,20 +10,20 @@ import UIKit
 import SpriteKit
 
 class ViewController: UIViewController, UIWebViewDelegate {
-    @IBOutlet var videoStreamView: UIWebView!
-    @IBOutlet var refreshStream: UIButton!
+    @IBOutlet private var videoStreamView: UIWebView!
+    @IBOutlet private var refreshStream: UIButton!
     var ipAddress: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.videoStreamView.delegate = self
+        videoStreamView.delegate = self
         
-        var size = CGSizeMake(736, 414)
+        let size = CGSizeMake(736, 414)
         
         let scene = GameScene(size: size) as GameScene
         // Configure the view.
-        let skView = self.view as SKView
+        let skView = self.view as! SKView
         skView.showsFPS = true
         skView.showsNodeCount = true
         
@@ -41,17 +41,15 @@ class ViewController: UIViewController, UIWebViewDelegate {
         super.viewDidAppear(true)
 
         let defaults = NSUserDefaults.standardUserDefaults()
-        if let address = defaults.stringForKey("ipAddress")
-        {
-            self.ipAddress = address
-            self.loadStream(address)
+        if let address = defaults.stringForKey("ipAddress") {
+            ipAddress = address
+            loadStream(address)
         } else {
-            self.showAlert()
+            showAlert()
         }
     }
     
-    func showAlert()
-    {
+    private func showAlert() {
         let alertController = UIAlertController(title: "IP", message: "Please enter the IP address of the Raspberry Pi \n i.e. 192.168.2.69", preferredStyle: .Alert)
         
         alertController.addTextFieldWithConfigurationHandler { (textField) in
@@ -67,25 +65,20 @@ class ViewController: UIViewController, UIWebViewDelegate {
         
         alertController.addAction(ipAction)
         
-        self.presentViewController(alertController, animated: true, completion: nil)
+        presentViewController(alertController, animated: true, completion: nil)
     }
     
-    func loadStream(ipAddress: String)
-    {
-        var urlString = "http://"
-        urlString += ipAddress
-        urlString += ":8080/stream_simple.html"
-        
-        var url = NSURL(string: urlString)
-        var streamRequest = NSURLRequest(URL: url!)
-        
-        self.videoStreamView.loadRequest(streamRequest)
-        
+    private func loadStream(ipAddress: String) {
+        let urlString = "http://\(ipAddress):8080/stream_simple.html"
+        if let url = NSURL(string: urlString) {
+            let streamRequest = NSURLRequest(URL: url)
+            videoStreamView.loadRequest(streamRequest)
+        }
     }
     
-    func webView(webView: UIWebView, didFailLoadWithError error: NSError) {
-        self.ipAddress = nil
-        let alertController = UIAlertController(title: "Error Loading", message: "Encountered an error: \(error.localizedDescription) \n Make sure that the Raspberry Pi is turned on and you've entered the correct IP address. i.e. 192.168.2.69", preferredStyle: .Alert)
+    func webView(webView: UIWebView, didFailLoadWithError error: NSError?) {
+        ipAddress = nil
+        let alertController = UIAlertController(title: "Error Loading", message: "Encountered an error: \(error?.localizedDescription) \n Make sure that the Raspberry Pi is turned on and you've entered the correct IP address. i.e. 192.168.2.69", preferredStyle: .Alert)
         
         alertController.addTextFieldWithConfigurationHandler { (textField) in
             textField.keyboardType = UIKeyboardType.NumbersAndPunctuation
@@ -100,12 +93,12 @@ class ViewController: UIViewController, UIWebViewDelegate {
         
         alertController.addAction(ipAction)
         
-        self.presentViewController(alertController, animated: true, completion: nil)
+        presentViewController(alertController, animated: true, completion: nil)
     }
     
     func webViewDidFinishLoad(webView: UIWebView) {
         // TODO: hide loading spinner
-        self.refreshStream.enabled = true
+        refreshStream.enabled = true
         
         let defaults = NSUserDefaults.standardUserDefaults()
         defaults.setObject(self.ipAddress, forKey: "ipAddress")
@@ -113,18 +106,18 @@ class ViewController: UIViewController, UIWebViewDelegate {
     
     func webViewDidStartLoad(webView: UIWebView) {
         // TODO: start loading spinner
-        self.refreshStream.enabled = false
+        refreshStream.enabled = false
     }
+    
     @IBAction func refreshButtonPressed(sender: AnyObject) {
         // TODO: move logic into function 
         // TODO: show loading spinner
         let defaults = NSUserDefaults.standardUserDefaults()
-        if let address = defaults.stringForKey("ipAddress")
-        {
-            self.ipAddress = address
-            self.loadStream(address)
+        if let address = defaults.stringForKey("ipAddress") {
+            ipAddress = address
+            loadStream(address)
         } else {
-            self.showAlert()
+            showAlert()
         }
     }
 
