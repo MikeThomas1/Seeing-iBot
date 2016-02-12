@@ -12,33 +12,20 @@ class GameScene: SKScene {
     
     override init(size: CGSize) {
         super.init(size: size)
-        var velocityTick:CADisplayLink = CADisplayLink(target: self, selector: "joystickMovement")
+        let velocityTick:CADisplayLink = CADisplayLink(target: self, selector: "joystickMovement")
         velocityTick.addToRunLoop(NSRunLoop.currentRunLoop(), forMode: NSRunLoopCommonModes)
-        self.addChild(self.joystickNode())
+        addChild(joystickNode())
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init()
     }
     
-    override func didMoveToView(view: SKView) {
-        /* Setup your scene here */
-        
-    }
-    
-    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
-        /* Called when a touch begins */
-    }
-   
-    override func update(currentTime: CFTimeInterval) {
-        /* Called before each frame is rendered */
-    }
-    
-    func joystickNode() -> Joystick {
+    private func joystickNode() -> Joystick {
         var joystick:Joystick
         
-        var jsthumb = SKSpriteNode(imageNamed: "joystick")
-        var jsBackdrop = SKSpriteNode(imageNamed: "dpad")
+        let jsthumb = SKSpriteNode(imageNamed: "joystick")
+        let jsBackdrop = SKSpriteNode(imageNamed: "dpad")
         
         joystick = Joystick(thumb: jsthumb, andBackdrop: jsBackdrop)
         joystick.position = CGPointMake(jsBackdrop.size.width * 5, self.size.height/1.5)
@@ -48,17 +35,16 @@ class GameScene: SKScene {
     }
     
     func joystickMovement() {
-        var joystick:Joystick = self.childNodeWithName("playerJoystick") as Joystick
+        guard let joystick:Joystick = childNodeWithName("playerJoystick") as? Joystick else {
+            return
+        }
         
-        if ((joystick.velocity.x != 0 || joystick.velocity.y != 0) && (self.speed == 1))
-        {
-            // TODO: send movement commands to Arduino
-            println("x: ")
-            println(joystick.velocity.x)
-            println("y: ")
-            println(joystick.velocity.y)
-            
-            //println(joystick.angularVelocity)
+        if ((joystick.velocity.x != 0 || joystick.velocity.y != 0) && (self.speed == 1)) {
+            // TODO: send movement commands to Raspberry Pi
+            print("x: ")
+            print(joystick.velocity.x)
+            print("y: ")
+            print(joystick.velocity.y)
         }
     }
 }
